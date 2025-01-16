@@ -9,9 +9,9 @@ new Vue({
             status: 'active',
             important: false,
         },
+		isEditing: false,
     },
     mounted() {
-        // Загружаем заметки из localStorage при запуске
         this.loadNotes();
     },
     methods: {
@@ -30,11 +30,12 @@ new Vue({
         },
         removeNote(id) {
             this.notes = this.notes.
-filter(note => note.id !== id);
+			filter(note => note.id !== id);
             this.saveNotes();
         },
         saveNotes() {
             localStorage.setItem('notes', JSON.stringify(this.notes));
+			this.isEditing = false;
         },
         loadNotes() {
             const savedNotes = localStorage.getItem('notes');
@@ -49,7 +50,7 @@ filter(note => note.id !== id);
         resetForm() {
             this.newNote.title = '';
             this.newNote.content = '';
-            this.newNote.priority = '';
+            this.newNote.priority = 'low';
             this.newNote.status = 'active';
             this.newNote.important = false;
         },
