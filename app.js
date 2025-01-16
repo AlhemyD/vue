@@ -5,7 +5,7 @@ new Vue({
         newNote: {
             title: '',
             content: '',
-            priority: '',
+            priority: 'low',
             status: 'active',
             important: false,
         },
